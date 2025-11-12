@@ -11,9 +11,8 @@ export const Home = () => {
     <div id="home">
       <Header />
       <ExploreMenu category={category} setCategory={setCategory} />
-      <FoodDisplay category={category} setCategory={setCategory}/>
-      <AppDownload/>
+      <FoodDisplay category={category} setCategory={setCategory} />
+      <AppDownload />
     </div>
-
   );
 };

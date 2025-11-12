@@ -4,7 +4,9 @@ import assets from "../../assets/assets";
 export const Footer = () => {
   return (
     //footer
-    <div id="contact-us" className=" overflow-hidden  text-[#d9d9d9] flex flex-col items-center gap-5  py-10 pt-20 mt-10 bg-emerald-500">
+    <div
+      id="contact-us"
+      className=" overflow-hidden  text-[#d9d9d9] flex flex-col items-center gap-5  py-10 pt-20 mt-10 bg-emerald-500">
       {/* footer-content */}
       <div className=" bg-red-400 w-90 lg:w-300 grid grid-cols-[1fr_1fr_1fr] gap-10">
         {/* footer-content-left */}

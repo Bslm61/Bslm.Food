@@ -4,7 +4,9 @@ import assets from "../../assets/assets";
 export const AppDownload = () => {
   return (
     //AppDownload
-    <div id="mobile-app" className="m-auto mt-[100px] max-[3vw,20px] text-3xl text-center font-medium  ">
+    <div
+      id="mobile-app"
+      className="m-auto mt-[100px] max-[3vw,20px] text-3xl text-center font-medium  ">
       <p>
         For Better Experience Sownload <br /> Tomato App
       </p>
