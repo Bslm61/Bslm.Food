@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-scroll";
+import assets from "../../assets/assets";
+import { Link as ScrollLink } from "react-scroll";
+import { Link as RouterLink } from "react-router";
 
-export const Navbar = ({setShowLogin}) => {
+export const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // for mobile menu toggle
 
@@ -9,18 +11,34 @@ export const Navbar = ({setShowLogin}) => {
     <nav className="w-full bg-white shadow-sm lg:shadow-none">
       {/* Navbar Container */}
       <div className="max-w-[1050px] mx-auto p-3 flex justify-between items-center">
-        {/* Logo */}
-        <img
-          className="w-[100px] sm:w-[120px] md:w-[140px]"
-          src="./src/assets/logo.png"
-          alt="logo"
-        />
+        <RouterLink to="/">
+          {/* Logo */}
+          <img
+            className="w-[100px] sm:w-[120px] md:w-[140px]"
+            src="./src/assets/logo.png"
+            alt="logo"
+          />
+        </RouterLink>
+
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex list-none gap-6 text-[#49557e] text-[17px] font-[Outfit]">
           {["home", "menu", "mobile-app", "contact-us"].map((item) => (
             <li key={item}>
-              <Link
+              {item === "home" ? (
+      // 👇 This one navigates to homepage route
+      <RouterLink
+        to="/"
+        onClick={() => setMenu("home")}
+        className={`cursor-pointer capitalize ${
+          menu === "home"
+            ? "p-1 border-b-2 border-[#49557e]"
+            : "hover:text-gray-700"
+        }`}>
+          Home
+        </RouterLink>
+        ) : (
+              <ScrollLink
                 to={item} // same name as the section ID
                 smooth={true} // enable smooth scrolling
                 duration={600} // scroll speed
@@ -32,8 +50,9 @@ export const Navbar = ({setShowLogin}) => {
                     : "hover:text-gray-700"
                 }`}>
                 {item.replace("-", " ")}
-              </Link>
-            </li>
+              </ScrollLink>
+        )}
+          </li>
           ))}
         </ul>
 
@@ -46,18 +65,15 @@ export const Navbar = ({setShowLogin}) => {
           />
 
           <div className="relative cursor-pointer">
-            <img
-              className="w-6"
-              src="./src/assets/basket_icon.png"
-              alt="basket"
-            />
+            <RouterLink to="/Cart">
+              <img className="w-6" src={assets.basket_icon} alt="basket" />
+            </RouterLink>
             <div className="absolute min-w-2.5 min-h-2.5 bg-red-400 rounded-full -top-1 -right-1"></div>
           </div>
 
-          <button onClick={()=>
-            setShowLogin(true)
-          } 
-          className="text-[15px] text-[#49557e] border border-gray-500 px-4 py-1 rounded-full hover:bg-amber-50 duration-300">
+          <button
+            onClick={() => setShowLogin(true)}
+            className="text-[15px] text-[#49557e] border border-gray-500 px-4 py-1 rounded-full hover:bg-amber-50 duration-300">
             Sign In
           </button>
         </div>
@@ -77,7 +93,7 @@ export const Navbar = ({setShowLogin}) => {
         <ul className="md:hidden flex flex-col items-center gap-4 py-4 bg-white">
           {["home", "menu", "mobile-app", "contact-us"].map((item) => (
             <li key={item}>
-              <Link
+              <ScrollLink
                 to={item}
                 smooth={true}
                 duration={600}
@@ -90,16 +106,14 @@ export const Navbar = ({setShowLogin}) => {
                   menu === item ? "border-b-2 border-[#49557e]" : ""
                 }`}>
                 {item.replace("-", " ")}
-              </Link>
+              </ScrollLink>
             </li>
           ))}
 
           {/* Mobile Sign-In Button */}
-          <button 
-          onClick={()=>
-            setShowLogin(true)
-          } 
-          className="text-[15px] text-[#49557e] border border-gray-500 px-6 py-1 rounded-full hover:bg-amber-50 duration-300">
+          <button
+            onClick={() => setShowLogin(true)}
+            className="text-[15px] text-[#49557e] border border-gray-500 px-6 py-1 rounded-full hover:bg-amber-50 duration-300">
             Sign In
           </button>
         </ul>
