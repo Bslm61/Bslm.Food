@@ -3,7 +3,7 @@ import { useContext } from "react";
 import StoreContext from "../../context/StoreContext";
 
 export const Cart = () => {
-  const { cartItems, food_list, removeFromCart  } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart , getTotalCartAmount  } = useContext(StoreContext);
 
   return (
     //cart
@@ -53,17 +53,17 @@ export const Cart = () => {
             {/* cart-total-details */}
             <div className="flex justify-between text-[#555] ">
               <p>Subtotal</p>
-              <p>{0}</p>
+              <p>${getTotalCartAmount()}</p>
             </div>
             <hr className="my-2.5" />
             <div className="flex justify-between text-[#555] ">
               <p>Delevery Fee</p>
-              <p>{2}</p>
+              <p>${2}</p>
             </div>
             <hr className="my-2.5" />
             <div className="flex justify-between text-[#555] ">
               <b>Total</b>
-              <b>{0}</b>
+              <b>${getTotalCartAmount()}</b>
             </div>
           </div>
           <button className="border-none text-white bg-[#FF6347] w-[max(15vw,200px)] py-3 px-0 cursor-pointer rounded-sm">PROCEED TO CHECKOUT</button>
