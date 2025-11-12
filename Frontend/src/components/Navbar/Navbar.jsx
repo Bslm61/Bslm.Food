@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import assets from "../../assets/assets";
 import { Link as ScrollLink } from "react-scroll";
 import { Link as RouterLink } from "react-router";
+import StoreContext from "../../context/StoreContext";
 
 export const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // for mobile menu toggle
+  const { getTotalCartAmount } = useContext(StoreContext);
 
   return (
     <nav className="w-full bg-white shadow-sm lg:shadow-none">
@@ -20,39 +22,38 @@ export const Navbar = ({ setShowLogin }) => {
           />
         </RouterLink>
 
-
         {/* Desktop Menu */}
         <ul className="hidden md:flex list-none gap-6 text-[#49557e] text-[17px] font-[Outfit]">
           {["home", "menu", "mobile-app", "contact-us"].map((item) => (
             <li key={item}>
               {item === "home" ? (
-      // 👇 This one navigates to homepage route
-      <RouterLink
-        to="/"
-        onClick={() => setMenu("home")}
-        className={`cursor-pointer capitalize ${
-          menu === "home"
-            ? "p-1 border-b-2 border-[#49557e]"
-            : "hover:text-gray-700"
-        }`}>
-          Home
-        </RouterLink>
-        ) : (
-              <ScrollLink
-                to={item} // same name as the section ID
-                smooth={true} // enable smooth scrolling
-                duration={600} // scroll speed
-                offset={-80} // adjust for navbar height
-                onClick={() => setMenu(item)}
-                className={`cursor-pointer capitalize ${
-                  menu === item
-                    ? "p-1 border-b-2 border-[#49557e]"
-                    : "hover:text-gray-700"
-                }`}>
-                {item.replace("-", " ")}
-              </ScrollLink>
-        )}
-          </li>
+                // 👇 This one navigates to homepage route
+                <RouterLink
+                  to="/"
+                  onClick={() => setMenu("home")}
+                  className={`cursor-pointer capitalize ${
+                    menu === "home"
+                      ? "p-1 border-b-2 border-[#49557e]"
+                      : "hover:text-gray-700"
+                  }`}>
+                  Home
+                </RouterLink>
+              ) : (
+                <ScrollLink
+                  to={item} // same name as the section ID
+                  smooth={true} // enable smooth scrolling
+                  duration={600} // scroll speed
+                  offset={-80} // adjust for navbar height
+                  onClick={() => setMenu(item)}
+                  className={`cursor-pointer capitalize ${
+                    menu === item
+                      ? "p-1 border-b-2 border-[#49557e]"
+                      : "hover:text-gray-700"
+                  }`}>
+                  {item.replace("-", " ")}
+                </ScrollLink>
+              )}
+            </li>
           ))}
         </ul>
 
@@ -66,9 +67,13 @@ export const Navbar = ({ setShowLogin }) => {
 
           <div className="relative cursor-pointer">
             <RouterLink to="/Cart">
-              <img className="w-6" src={assets.basket_icon} alt="basket" />
+              <img className="w-6 " src={assets.basket_icon} alt="basket" />
             </RouterLink>
-            <div className="absolute min-w-2.5 min-h-2.5 bg-red-400 rounded-full -top-1 -right-1"></div>
+            {getTotalCartAmount() > 0 ? (
+              <div className="absolute min-w-2.5 min-h-2.5 bg-red-400 rounded-full -top-1 -right-1"></div>
+            ) : (
+              ""
+            )}
           </div>
 
           <button
