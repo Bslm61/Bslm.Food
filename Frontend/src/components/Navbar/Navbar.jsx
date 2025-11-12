@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-scroll";
+
 
 export const Navbar = () => {
   const [menu, setMenu] = useState("home");
@@ -17,20 +19,25 @@ export const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex list-none gap-6 text-[#49557e] text-[17px] font-[Outfit]">
-          {["home", "menu", "mobile-app", "contact-us"].map((item) => (
-            <li
-              key={item}
-              onClick={() => setMenu(item)}
-              className={`cursor-pointer capitalize ${
-                menu === item
-                  ? "p-1 border-b-2 border-[#49557e]"
-                  : "hover:text-gray-700"
-              }`}
-            >
-              {item.replace("-", " ")}
-            </li>
-          ))}
-        </ul>
+  {["home", "menu", "mobile-app", "contact-us"].map((item) => (
+    <li key={item}>
+      <Link
+        to={item}             // same name as the section ID
+        smooth={true}         // enable smooth scrolling
+        duration={600}        // scroll speed
+        offset={-80}          // adjust for navbar height
+        onClick={() => setMenu(item)}
+        className={`cursor-pointer capitalize ${
+          menu === item
+            ? "p-1 border-b-2 border-[#49557e]"
+            : "hover:text-gray-700"
+        }`}
+      >
+        {item.replace("-", " ")}
+      </Link>
+    </li>
+  ))}
+</ul>
 
         {/* Right Side (icons + button) */}
         <div className="hidden md:flex items-center gap-4">
@@ -67,21 +74,26 @@ export const Navbar = () => {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <ul className="md:hidden flex flex-col items-center gap-4 py-4 bg-white   ">
-          {["home", "menu", "mobile-app", "contact-us"].map((item) => (
-            <li
-              key={item}
-              onClick={() => {
-                setMenu(item);
-                setIsOpen(false);
-              }}
-              className={`cursor-pointer capitalize text-[#49557e] ${
-                menu === item ? "border-b-2 border-[#49557e]" : ""
-              }`}
-            >
-              {item.replace("-", " ")}
-            </li>
-          ))}
+  <ul className="md:hidden flex flex-col items-center gap-4 py-4 bg-white">
+    {["home", "menu", "mobile-app", "contact-us"].map((item) => (
+      <li key={item}>
+        <Link
+          to={item}
+          smooth={true}
+          duration={600}
+          offset={-80}
+          onClick={() => {
+            setMenu(item);
+            setIsOpen(false);
+          }}
+          className={`cursor-pointer capitalize text-[#49557e] ${
+            menu === item ? "border-b-2 border-[#49557e]" : ""
+          }`}
+        >
+          {item.replace("-", " ")}
+        </Link>
+      </li>
+    ))}
 
           {/* Mobile Sign-In Button */}
           <button className="text-[15px] text-[#49557e] border border-gray-500 px-6 py-1 rounded-full hover:bg-amber-50 duration-300">
