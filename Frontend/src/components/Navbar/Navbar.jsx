@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
 
-export const Navbar = () => {
+export const Navbar = ({setShowLogin}) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // for mobile menu toggle
 
@@ -54,7 +54,10 @@ export const Navbar = () => {
             <div className="absolute min-w-2.5 min-h-2.5 bg-red-400 rounded-full -top-1 -right-1"></div>
           </div>
 
-          <button className="text-[15px] text-[#49557e] border border-gray-500 px-4 py-1 rounded-full hover:bg-amber-50 duration-300">
+          <button onClick={()=>
+            setShowLogin(true)
+          } 
+          className="text-[15px] text-[#49557e] border border-gray-500 px-4 py-1 rounded-full hover:bg-amber-50 duration-300">
             Sign In
           </button>
         </div>
@@ -92,7 +95,11 @@ export const Navbar = () => {
           ))}
 
           {/* Mobile Sign-In Button */}
-          <button className="text-[15px] text-[#49557e] border border-gray-500 px-6 py-1 rounded-full hover:bg-amber-50 duration-300">
+          <button 
+          onClick={()=>
+            setShowLogin(true)
+          } 
+          className="text-[15px] text-[#49557e] border border-gray-500 px-6 py-1 rounded-full hover:bg-amber-50 duration-300">
             Sign In
           </button>
         </ul>
