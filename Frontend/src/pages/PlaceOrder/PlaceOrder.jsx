@@ -78,22 +78,23 @@ export const PlaceOrder = () => {
           Cart Totals
         </h2>
 
-        <div className="flex flex-col gap-3 text-[#555]">
-          <div className="flex justify-between">
-            <p>Subtotal</p>
-            <p>${getTotalCartAmount()}</p>
+         <div>
+            {/* cart-total-details */}
+            <div className="flex justify-between text-[#555] ">
+              <p>Subtotal</p>
+              <p>${getTotalCartAmount()}</p>
+            </div>
+            <hr className="my-2.5" />
+            <div className="flex justify-between text-[#555] ">
+              <p>Delevery Fee</p>
+              <p>${getTotalCartAmount()===0?0:2}</p>
+            </div>
+            <hr className="my-2.5" />
+            <div className="flex justify-between text-[#555] ">
+              <b>Total</b>
+              <b>${getTotalCartAmount()===0?0:getTotalCartAmount()+ 2}</b>
+            </div>
           </div>
-          <hr />
-          <div className="flex justify-between">
-            <p>Delivery Fee</p>
-            <p>$2</p>
-          </div>
-          <hr />
-          <div className="flex justify-between font-semibold">
-            <p>Total</p>
-            <p>${getTotalCartAmount() + 2}</p>
-          </div>
-        </div>
 
         <button
           type="submit"
