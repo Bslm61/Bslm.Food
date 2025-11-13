@@ -46,7 +46,9 @@ export const LogingPopup = ({ setShowLogin }) => {
             required
           />
         </div>
-        <button className="border-none p-2.5 bg-[#FF6347] text-[15px] cursor-pointer text-white rounded-sm">{currState === "Sign Up" ? "Create account" : "Login"}</button>
+        <button className="border-none p-2.5 bg-[#FF6347] text-[15px] cursor-pointer text-white rounded-sm">
+          {currState === "Sign Up" ? "Create account" : "Login"}
+        </button>
         {/* login-popup-condition */}
         <div className="flex items-start  gap-2 -mt-[15px] ">
           <input className="mt-[5px]" type="checkbox" required />

@@ -18,7 +18,6 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-
 // run Express server
 app.listen(PORT, () => {
   console.log(`✅ Server started on http://localhost:${PORT}`);

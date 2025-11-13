@@ -78,28 +78,27 @@ export const PlaceOrder = () => {
           Cart Totals
         </h2>
 
-         <div>
-            {/* cart-total-details */}
-            <div className="flex justify-between text-[#555] ">
-              <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
-            </div>
-            <hr className="my-2.5" />
-            <div className="flex justify-between text-[#555] ">
-              <p>Delevery Fee</p>
-              <p>${getTotalCartAmount()===0?0:2}</p>
-            </div>
-            <hr className="my-2.5" />
-            <div className="flex justify-between text-[#555] ">
-              <b>Total</b>
-              <b>${getTotalCartAmount()===0?0:getTotalCartAmount()+ 2}</b>
-            </div>
+        <div>
+          {/* cart-total-details */}
+          <div className="flex justify-between text-[#555] ">
+            <p>Subtotal</p>
+            <p>${getTotalCartAmount()}</p>
           </div>
+          <hr className="my-2.5" />
+          <div className="flex justify-between text-[#555] ">
+            <p>Delevery Fee</p>
+            <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
+          </div>
+          <hr className="my-2.5" />
+          <div className="flex justify-between text-[#555] ">
+            <b>Total</b>
+            <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
+          </div>
+        </div>
 
         <button
           type="submit"
-          className="mt-6 w-full text-white bg-[#FF6347] py-3 rounded-sm font-semibold hover:opacity-90 duration-300"
-        >
+          className="mt-6 w-full text-white bg-[#FF6347] py-3 rounded-sm font-semibold hover:opacity-90 duration-300">
           PROCEED TO PAY
         </button>
       </div>
