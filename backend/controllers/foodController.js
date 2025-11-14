@@ -31,10 +31,27 @@ const addFood = async (req, res) => {
 // we created one addFood controller function
 
 //all food list
-
+// Controller to get the full list of food items
 const listFood = async (req,res)=>{
+  try {
+     // Fetch all food documents from the database
+    // {} means no filter → return everything
+    const foods = await foodModel.find({});
 
-  
+    // Send the list back to the frontend
+      res.json({succes:true,data:foods})
+    
+  } catch (error) {
+    console.log(error);
+    res.json({succes:false,message:"Error while fetching food list"})
+    
+  }
 }
 
-export { addFood , listFood };
+//remove foodItem
+
+const removeFood = async (req, res) => {
+
+}
+
+export { addFood , listFood , removeFood };
