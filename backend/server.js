@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { connectDB } from "./config/db.js";
 
 // Load environment variables (if you have a .env file)
 dotenv.config();
@@ -14,6 +15,10 @@ const PORT = process.env.PORT || 4000; //For production or scalable apps --- You
 app.use(express.json());
 app.use(cors());
 
+// db connection
+
+connectDB();
+
 app.get("/", (req, res) => {
   res.send("API WORKING");
 });
@@ -22,3 +27,7 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server started on http://localhost:${PORT}`);
 });
+
+
+//mongodb+srv://FoodDel:14112025DB@cluster0.wq3hb5k.mongodb.net/?
+
