@@ -29,4 +29,12 @@ const addFood = async (req, res) => {
   }
 };
 // we created one addFood controller function
-export { addFood };
+
+//all food list
+
+const listFood = async (req,res)=>{
+
+  
+}
+
+export { addFood , listFood };

@@ -1,5 +1,5 @@
 import express from "express";
-import { addFood } from "../controllers/foodController.js";
+import { addFood, listFood } from "../controllers/foodController.js";
 import multer from "multer"; //middleware used in Express to handle file uploads (images, PDFs, etc.).
 
 const foodRouter = express.Router();
@@ -22,5 +22,6 @@ const upload = multer({ storage: storage }); // tells it how to store incoming f
 
 //post methode to send data on the server , data will be proced and we will get response
 foodRouter.post("/add",upload.single("image"),addFood);
+foodRouter.get("/list",listFood)
 
 export default foodRouter;
