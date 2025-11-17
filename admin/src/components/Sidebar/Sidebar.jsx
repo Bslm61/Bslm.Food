@@ -3,11 +3,11 @@ import { assets } from "../../assets/assets";
 
 export const Sidebar = () => {
   return (
-    <div className="w-[80px] sm:w-[200px] md:w-[250px] lg:w-[280px] min-h-screen border-r-[1.5px] border-solid border-gray-200 bg-white shadow-md">
+    <div className="w-20 sm:w-[200px] md:w-[250px] lg:w-[280px] min-h-screen border-r-[1.5px] border-solid border-gray-200 bg-white shadow-md">
       {/* Sidebar Options */}
       <div className="flex flex-col gap-4 pt-5">
         {/* Sidebar Option - Add Items */}
-        <div className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
+        <div className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
           <img
             src={assets.add_icon}
             alt="Add Items"
@@ -19,7 +19,7 @@ export const Sidebar = () => {
         </div>
 
         {/* Sidebar Option - List Items */}
-        <div className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
+        <div className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
           <img
             src={assets.order_icon}
             alt="List Items"
@@ -31,7 +31,7 @@ export const Sidebar = () => {
         </div>
 
         {/* Sidebar Option - Orders */}
-        <div className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
+        <div className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
           <img
             src={assets.order_icon}
             alt="Orders"
