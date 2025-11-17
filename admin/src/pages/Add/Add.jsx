@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import { assets } from '../../assets/assets'
 
 export const Add = () => {
@@ -16,12 +16,22 @@ export const Add = () => {
       const value = event.target.value;
       setData(data=>({...data,[name]:value}))
     }
-
-    useEffect()
   
-  return (
+
+    const onSubmitHandler = async (event)=>{
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append("name",data.name)
+      formData.append("description",data.desription)
+      formData.append("price",Number(data.price))
+      formData.append("image",image)
+
+    }
+  
+  
+    return (
     <div className="w-full max-w-4xl mx-auto p-6 md:p-8">
-      <form className="flex flex-col gap-6">
+      <form className="flex flex-col gap-6" onSubmit={onSubmitHandler}>
         {/* Upload Image */}
         <div className="flex flex-col gap-3">
           <p className="text-gray-700 font-semibold text-base md:text-lg">Upload Image</p>
@@ -53,7 +63,6 @@ export const Add = () => {
           <p className="text-gray-700 font-semibold text-base md:text-lg">Product description</p>
           <textarea 
             onChange={onChangeHandler}
-            value={data.desription}
             name="description" 
             rows={6} 
             placeholder='Write content here' 
