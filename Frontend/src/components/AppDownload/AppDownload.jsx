@@ -6,21 +6,21 @@ export const AppDownload = () => {
     //AppDownload
     <div
       id="mobile-app"
-      className="m-auto mt-[100px] max-[3vw,20px] text-3xl text-center font-medium  ">
+      className="m-auto mt-16 md:mt-24 lg:mt-[100px] px-4 text-2xl md:text-3xl lg:text-4xl text-center font-medium">
       <p>
-        For Better Experience Sownload <br /> Tomato App
+        For Better Experience Download <br className="hidden sm:block" /> Tomato App
       </p>
       {/* app-download-platforms    */}
-      <div className="flex items-center gap-2 mt-3 justify-center ">
+      <div className="flex items-center gap-3 md:gap-4 mt-6 md:mt-8 justify-center flex-wrap">
         <img
           src={assets.play_store}
           alt=""
-          className="w-40 md:w-50 cursor-pointer transition-all duration-500 hover:scale-[1.01]"
+          className="w-32 sm:w-36 md:w-40 lg:w-44 cursor-pointer transition-all duration-500 hover:scale-105"
         />
         <img
           src={assets.app_store}
           alt=""
-          className="w-40 md:w-50 cursor-pointer transition-all duration-500 hover:scale-[1.01]"
+          className="w-32 sm:w-36 md:w-40 lg:w-44 cursor-pointer transition-all duration-500 hover:scale-105"
         />
       </div>
     </div>
