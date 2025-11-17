@@ -3,6 +3,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
+import userRouter from "./routes/userRoute.js";
+import 'dotenv/config.js'
 
 // Load environment variables (if you have a .env file)
 dotenv.config();
@@ -20,8 +22,9 @@ app.use(cors());
 connectDB();
 
 //APi endpoints
-app.use("/api/food",foodRouter)
-app.use("/images",express.static('uploads'))
+app.use("/api/food", foodRouter);
+app.use("/images", express.static("uploads"));
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("API WORKING");
@@ -32,6 +35,4 @@ app.listen(PORT, () => {
   console.log(`✅ Server started on http://localhost:${PORT}`);
 });
 
-
 //mongodb+srv://FoodDel:14112025DB@cluster0.wq3hb5k.mongodb.net/?
-
