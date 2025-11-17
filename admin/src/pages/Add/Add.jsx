@@ -44,6 +44,7 @@ export const Add = () => {
     }
   
   else {
+      toast.error(response.data.message);
     }
   };
 
