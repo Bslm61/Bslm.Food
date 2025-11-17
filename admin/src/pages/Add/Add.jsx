@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets } from '../../assets/assets'
 
 export const Add = () => {
@@ -10,7 +10,14 @@ export const Add = () => {
       price:"",
       category:"Salad"
     })
-  
+    
+    const onChangeHandler = (event)=>{
+      const name = event.target.name;
+      const value = event.target.value;
+      setData(data=>({...data,[name]:value}))
+    }
+
+    useEffect()
   
   return (
     <div className="w-full max-w-4xl mx-auto p-6 md:p-8">
@@ -32,6 +39,8 @@ export const Add = () => {
         <div className="flex flex-col gap-3">
           <p className="text-gray-700 font-semibold text-base md:text-lg">Product name</p>
           <input 
+            onChange={onChangeHandler}
+            value={data.name}
             type="text" 
             name='name' 
             placeholder='Type here' 
@@ -43,6 +52,8 @@ export const Add = () => {
         <div className="flex flex-col gap-3">
           <p className="text-gray-700 font-semibold text-base md:text-lg">Product description</p>
           <textarea 
+            onChange={onChangeHandler}
+            value={data.desription}
             name="description" 
             rows={6} 
             placeholder='Write content here' 
@@ -57,6 +68,8 @@ export const Add = () => {
           <div className="flex flex-col gap-3 flex-1">
             <p className="text-gray-700 font-semibold text-base md:text-lg">Product category</p>
             <select 
+              onChange={onChangeHandler}
+              value={data.category}
               name="category"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff6347] focus:border-transparent transition-all duration-200 cursor-pointer"
             >
@@ -75,6 +88,8 @@ export const Add = () => {
           <div className="flex flex-col gap-3 flex-1">
             <p className="text-gray-700 font-semibold text-base md:text-lg">Product price</p>
             <input 
+              onChange={onChangeHandler}
+              value={data.price}
               type="Number" 
               name='price' 
               placeholder='$20'
