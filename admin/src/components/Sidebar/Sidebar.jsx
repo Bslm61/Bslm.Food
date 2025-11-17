@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "../../assets/assets";
-import { NavLink } from "react-router-dom";
 
 export const Sidebar = () => {
+  const [activeItem, setActiveItem] = useState(null);
+
+  const handleClick = (item) => {
+    // Si on clique sur l'item déjà actif, on le désélectionne
+    if (activeItem === item) {
+      setActiveItem(null);
+    } else {
+      setActiveItem(item);
+    }
+  };
+
   return (
     <div className="w-20 sm:w-[200px] md:w-[250px] lg:w-[280px] min-h-screen border-r-[1.5px] border-solid border-gray-200 bg-white shadow-md">
       {/* Sidebar Options */}
-      <NavLink className="flex flex-col gap-4 pt-5">
+      <div className="flex flex-col gap-4 pt-5">
         {/* Sidebar Option - Add Items */}
-        <NavLink to='/add' className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
+        <div
+          onClick={() => handleClick("add")}
+          className={`mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none transition-all duration-200 group ${
+            activeItem === "add"
+              ? "bg-[#fff0ed] border-[#ff6347]"
+              : "border-gray-300 hover:bg-gray-50 hover:border-gray-400"
+          }`}
+        >
           <img
             src={assets.add_icon}
             alt="Add Items"
@@ -17,10 +34,17 @@ export const Sidebar = () => {
           <p className="text-gray-700 font-medium text-sm md:text-base group-hover:text-gray-900 hidden sm:block">
             Add Items
           </p>
-        </NavLink>
+        </div>
 
         {/* Sidebar Option - List Items */}
-        <NavLink to='/list' className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
+        <div
+          onClick={() => handleClick("list")}
+          className={`mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none transition-all duration-200 group ${
+            activeItem === "list"
+              ? "bg-[#fff0ed] border-[#ff6347]"
+              : "border-gray-300 hover:bg-gray-50 hover:border-gray-400"
+          }`}
+        >
           <img
             src={assets.order_icon}
             alt="List Items"
@@ -29,10 +53,17 @@ export const Sidebar = () => {
           <p className="text-gray-700 font-medium text-sm md:text-base group-hover:text-gray-900 hidden sm:block">
             List Items
           </p>
-        </NavLink>
+        </div>
 
         {/* Sidebar Option - Orders */}
-        <NavLink to='/orders' className="mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border border-gray-300 sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 group">
+        <div
+          onClick={() => handleClick("orders")}
+          className={`mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none transition-all duration-200 group ${
+            activeItem === "orders"
+              ? "bg-[#fff0ed] border-[#ff6347]"
+              : "border-gray-300 hover:bg-gray-50 hover:border-gray-400"
+          }`}
+        >
           <img
             src={assets.order_icon}
             alt="Orders"
@@ -41,8 +72,8 @@ export const Sidebar = () => {
           <p className="text-gray-700 font-medium text-sm md:text-base group-hover:text-gray-900 hidden sm:block">
             Orders
           </p>
-        </NavLink>
-      </NavLink>
+        </div>
+      </div>
     </div>
   );
 };
