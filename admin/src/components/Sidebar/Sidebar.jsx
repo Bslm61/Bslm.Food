@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 export const Sidebar = () => {
-  const [activeItem, setActiveItem] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleClick = (item) => {
-    // Si on clique sur l'item déjà actif, on le désélectionne
-    if (activeItem === item) {
-      setActiveItem(null);
+  const handleClick = (path) => {
+    // Si on est déjà sur cette page, on "unclick" (retour à l'accueil ou page vide)
+    if (location.pathname === path) {
+      navigate("/"); // ou navigate("") pour rester sans route active
     } else {
-      setActiveItem(item);
+      navigate(path);
     }
   };
 
@@ -19,13 +21,12 @@ export const Sidebar = () => {
       <div className="flex flex-col gap-4 pt-5">
         {/* Sidebar Option - Add Items */}
         <div
-          onClick={() => handleClick("add")}
+          onClick={() => handleClick("/add")}
           className={`mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none transition-all duration-200 group ${
-            activeItem === "add"
+            location.pathname === "/add"
               ? "bg-[#fff0ed] border-[#ff6347]"
               : "border-gray-300 hover:bg-gray-50 hover:border-gray-400"
-          }`}
-        >
+          }`}>
           <img
             src={assets.add_icon}
             alt="Add Items"
@@ -38,13 +39,12 @@ export const Sidebar = () => {
 
         {/* Sidebar Option - List Items */}
         <div
-          onClick={() => handleClick("list")}
+          onClick={() => handleClick("/list")}
           className={`mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none transition-all duration-200 group ${
-            activeItem === "list"
+            location.pathname === "/list"
               ? "bg-[#fff0ed] border-[#ff6347]"
               : "border-gray-300 hover:bg-gray-50 hover:border-gray-400"
-          }`}
-        >
+          }`}>
           <img
             src={assets.order_icon}
             alt="List Items"
@@ -57,13 +57,12 @@ export const Sidebar = () => {
 
         {/* Sidebar Option - Orders */}
         <div
-          onClick={() => handleClick("orders")}
+          onClick={() => handleClick("/orders")}
           className={`mx-3 sm:mx-0 sm:pl-6 md:pl-8 md:ml-6 border sm:border-r-0 flex items-center justify-center sm:justify-start gap-3 cursor-pointer p-3 rounded-lg sm:rounded-l-lg sm:rounded-r-none transition-all duration-200 group ${
-            activeItem === "orders"
+            location.pathname === "/orders"
               ? "bg-[#fff0ed] border-[#ff6347]"
               : "border-gray-300 hover:bg-gray-50 hover:border-gray-400"
-          }`}
-        >
+          }`}>
           <img
             src={assets.order_icon}
             alt="Orders"
