@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { assets } from '../../assets/assets'
 
 export const Add = () => {
+  
+    const [image,setImage] = useState(false);
+    const [data,setData] = useState({
+      name:"",
+      desription:"",
+      price:"",
+      category:"Salad"
+    })
+  
+  
   return (
     <div className="w-full max-w-4xl mx-auto p-6 md:p-8">
       <form className="flex flex-col gap-6">
@@ -10,12 +20,12 @@ export const Add = () => {
           <p className="text-gray-700 font-semibold text-base md:text-lg">Upload Image</p>
           <label htmlFor="image" className="cursor-pointer">
             <img 
-              src={assets.upload_area} 
+              src={image?URL.createObjectURL(image):assets.upload_area} 
               alt="Upload area" 
               className="w-32 h-32 md:w-40 md:h-40 object-cover border-2 border-dashed border-gray-300 rounded-lg hover:border-gray-400 transition-all duration-200"
             />
           </label>
-          <input type="file" id='image' hidden required />
+          <input onChange={(e)=>{setImage(e.target.files[0])}} type="file" id='image' hidden required />
         </div>
 
         {/* Product Name */}
