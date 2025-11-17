@@ -10,20 +10,20 @@ export const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount } = useContext(StoreContext);
 
   return (
-    <nav className="w-full bg-white shadow-sm lg:shadow-none">
+    <nav className="w-full bg-white shadow-sm lg:shadow-none sticky top-0 z-50">
       {/* Navbar Container */}
-      <div className="max-w-[1050px] mx-auto p-3 flex justify-between items-center">
+      <div className="max-w-[1050px] mx-auto px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
         <RouterLink to="/">
           {/* Logo */}
           <img
-            className="w-[100px] sm:w-[120px] md:w-[140px]"
+            className="w-[90px] sm:w-[110px] md:w-[130px] lg:w-[140px]"
             src="./src/assets/logo.png"
             alt="logo"
           />
         </RouterLink>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex list-none gap-6 text-[#49557e] text-[17px] font-[Outfit]">
+        <ul className="hidden lg:flex list-none gap-5 xl:gap-6 text-[#49557e] text-[15px] lg:text-[16px] xl:text-[17px] font-[Outfit]">
           {["home", "menu", "mobile-app", "contact-us"].map((item) => (
             <li key={item}>
               {item === "home" ? (
@@ -31,9 +31,9 @@ export const Navbar = ({ setShowLogin }) => {
                 <RouterLink
                   to="/"
                   onClick={() => setMenu("home")}
-                  className={`cursor-pointer capitalize ${
+                  className={`cursor-pointer capitalize transition-all duration-200 ${
                     menu === "home"
-                      ? "p-1 border-b-2 border-[#49557e]"
+                      ? "pb-1 border-b-2 border-[#49557e]"
                       : "hover:text-gray-700"
                   }`}>
                   Home
@@ -45,9 +45,9 @@ export const Navbar = ({ setShowLogin }) => {
                   duration={600} // scroll speed
                   offset={-80} // adjust for navbar height
                   onClick={() => setMenu(item)}
-                  className={`cursor-pointer capitalize ${
+                  className={`cursor-pointer capitalize transition-all duration-200 ${
                     menu === item
-                      ? "p-1 border-b-2 border-[#49557e]"
+                      ? "pb-1 border-b-2 border-[#49557e]"
                       : "hover:text-gray-700"
                   }`}>
                   {item.replace("-", " ")}
@@ -58,16 +58,20 @@ export const Navbar = ({ setShowLogin }) => {
         </ul>
 
         {/* Right Side (icons + button) */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-4">
           <img
-            className="w-5 cursor-pointer"
+            className="w-4 lg:w-5 cursor-pointer hover:opacity-70 transition-opacity"
             src="./src/assets/search_icon.png"
             alt="search"
           />
 
           <div className="relative cursor-pointer">
             <RouterLink to="/Cart">
-              <img className="w-6 " src={assets.basket_icon} alt="basket" />
+              <img 
+                className="w-5 lg:w-6 hover:opacity-70 transition-opacity" 
+                src={assets.basket_icon} 
+                alt="basket" 
+              />
             </RouterLink>
             {getTotalCartAmount() > 0 ? (
               <div className="absolute min-w-2.5 min-h-2.5 bg-red-400 rounded-full -top-1 -right-1"></div>
@@ -78,51 +82,89 @@ export const Navbar = ({ setShowLogin }) => {
 
           <button
             onClick={() => setShowLogin(true)}
-            className="text-[15px] text-[#49557e] border border-gray-500 px-4 py-1 rounded-full hover:bg-amber-50 duration-300">
+            className="text-sm lg:text-[15px] text-[#49557e] border border-gray-500 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full hover:bg-amber-50 transition-all duration-300">
             Sign In
           </button>
         </div>
 
-        {/* Hamburger Icon (Mobile only) */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden flex flex-col gap-1 cursor-pointer">
-          <span className="w-6 h-0.5 bg-[#49557e]"></span>
-          <span className="w-6 h-0.5 bg-[#49557e]"></span>
-          <span className="w-6 h-0.5 bg-[#49557e]"></span>
-        </button>
+        {/* Mobile Right Side (Cart + Hamburger) */}
+        <div className="flex lg:hidden items-center gap-4">
+          <div className="relative cursor-pointer">
+            <RouterLink to="/Cart">
+              <img 
+                className="w-5 sm:w-6" 
+                src={assets.basket_icon} 
+                alt="basket" 
+              />
+            </RouterLink>
+            {getTotalCartAmount() > 0 ? (
+              <div className="absolute min-w-2.5 min-h-2.5 bg-red-400 rounded-full -top-1 -right-1"></div>
+            ) : (
+              ""
+            )}
+          </div>
+
+          {/* Hamburger Icon (Mobile only) */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex flex-col gap-1 cursor-pointer">
+            <span className={`w-6 h-0.5 bg-[#49557e] transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-[#49557e] transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-[#49557e] transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Dropdown Menu */}
-      {isOpen && (
-        <ul className="md:hidden flex flex-col items-center gap-4 py-4 bg-white">
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}>
+        <ul className="flex flex-col items-center gap-4 py-4 bg-white border-t border-gray-100">
           {["home", "menu", "mobile-app", "contact-us"].map((item) => (
             <li key={item}>
-              <ScrollLink
-                to={item}
-                smooth={true}
-                duration={600}
-                offset={-80}
-                onClick={() => {
-                  setMenu(item);
-                  setIsOpen(false);
-                }}
-                className={`cursor-pointer capitalize text-[#49557e] ${
-                  menu === item ? "border-b-2 border-[#49557e]" : ""
-                }`}>
-                {item.replace("-", " ")}
-              </ScrollLink>
+              {item === "home" ? (
+                <RouterLink
+                  to="/"
+                  onClick={() => {
+                    setMenu("home");
+                    setIsOpen(false);
+                  }}
+                  className={`cursor-pointer capitalize text-[#49557e] text-base sm:text-lg transition-all ${
+                    menu === item ? "border-b-2 border-[#49557e] pb-1" : ""
+                  }`}>
+                  Home
+                </RouterLink>
+              ) : (
+                <ScrollLink
+                  to={item}
+                  smooth={true}
+                  duration={600}
+                  offset={-80}
+                  onClick={() => {
+                    setMenu(item);
+                    setIsOpen(false);
+                  }}
+                  className={`cursor-pointer capitalize text-[#49557e] text-base sm:text-lg transition-all ${
+                    menu === item ? "border-b-2 border-[#49557e] pb-1" : ""
+                  }`}>
+                  {item.replace("-", " ")}
+                </ScrollLink>
+              )}
             </li>
           ))}
 
           {/* Mobile Sign-In Button */}
           <button
-            onClick={() => setShowLogin(true)}
-            className="text-[15px] text-[#49557e] border border-gray-500 px-6 py-1 rounded-full hover:bg-amber-50 duration-300">
+            onClick={() => {
+              setShowLogin(true);
+              setIsOpen(false);
+            }}
+            className="text-[15px] sm:text-base text-[#49557e] border border-gray-500 px-6 sm:px-8 py-1.5 sm:py-2 rounded-full hover:bg-amber-50 transition-all duration-300 mt-2">
             Sign In
           </button>
         </ul>
-      )}
+      </div>
     </nav>
   );
 };
