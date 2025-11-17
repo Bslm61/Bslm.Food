@@ -8,6 +8,11 @@ import { Orders } from "./pages/Orders/Orders.jsx";
 import { ToastContainer } from 'react-toastify';
 
 export const App = () => {
+
+
+  const url = "http://localhost:4000";
+
+
   return (
     <>
     <ToastContainer />
@@ -18,9 +23,9 @@ export const App = () => {
         <div className="flex ">
           <Sidebar />
           <Routes>
-            <Route path="/add" element={<Add />} />
-            <Route path="/list" element={<List />} />
-            <Route path="/orders" element={<Orders />} />
+            <Route path="/add" element={<Add url={url} />} />
+            <Route path="/list" element={<List url={url} />} />
+            <Route path="/orders" element={<Orders url={url} />} />
           </Routes>
         </div>
       </div>
