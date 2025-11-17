@@ -86,7 +86,7 @@ export const PlaceOrder = () => {
           </div>
           <hr className="my-2.5" />
           <div className="flex justify-between text-[#555] ">
-            <p>Delevery Fee</p>
+            <p>Delivery Fee</p>
             <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
           </div>
           <hr className="my-2.5" />
@@ -99,7 +99,7 @@ export const PlaceOrder = () => {
         <button
           type="submit"
           className="mt-6 w-full text-white bg-[#FF6347] py-3 rounded-sm font-semibold hover:opacity-90 duration-300">
-          PROCEED TO PAY
+          PROCEED TO PAYEMENT
         </button>
       </div>
     </form>
