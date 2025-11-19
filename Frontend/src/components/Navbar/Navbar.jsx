@@ -98,7 +98,7 @@ export const Navbar = ({ setShowLogin }) => {
             <div className="relative">
               <img
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="w-8 lg:w-9 cursor-pointer hover:opacity-80 transition-opacity"
+                className="w-5 lg:w-6 cursor-pointer hover:opacity-70 transition-opacity"
                 src={assets.profile_icon}
                 alt="profile"
               />
@@ -107,14 +107,14 @@ export const Navbar = ({ setShowLogin }) => {
                 <ul className="absolute right-0 mt-3 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-36 lg:w-40 z-50 animate-fade-in">
                   <li
                     onClick={() => setShowProfileMenu(false)}
-                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
+                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-amber-50 cursor-pointer transition-colors">
                     <img className="w-5" src={assets.bag_icon} alt="orders" />
                     <p className="text-sm text-[#49557e] font-medium">Orders</p>
                   </li>
                   <hr className="my-1 border-gray-200" />
                   <li
                     onClick={logout}
-                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
+                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-amber-50 cursor-pointer transition-colors">
                     <img className="w-5" src={assets.logout_icon} alt="logout" />
                     <p className="text-sm text-[#49557e] font-medium">Logout</p>
                   </li>
@@ -147,7 +147,7 @@ export const Navbar = ({ setShowLogin }) => {
             <div className="relative">
               <img
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="w-7 sm:w-8 cursor-pointer hover:opacity-80 transition-opacity"
+                className="w-5 sm:w-6 cursor-pointer hover:opacity-70 transition-opacity"
                 src={assets.profile_icon}
                 alt="profile"
               />
@@ -156,14 +156,14 @@ export const Navbar = ({ setShowLogin }) => {
                 <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-32 sm:w-36 z-50 animate-fade-in">
                   <li
                     onClick={() => setShowProfileMenu(false)}
-                    className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-gray-50 cursor-pointer transition-colors">
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors">
                     <img className="w-4 sm:w-5" src={assets.bag_icon} alt="orders" />
                     <p className="text-xs sm:text-sm text-[#49557e] font-medium">Orders</p>
                   </li>
                   <hr className="my-1 border-gray-200" />
                   <li
                     onClick={logout}
-                    className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-gray-50 cursor-pointer transition-colors">
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors">
                     <img className="w-4 sm:w-5" src={assets.logout_icon} alt="logout" />
                     <p className="text-xs sm:text-sm text-[#49557e] font-medium">Logout</p>
                   </li>
