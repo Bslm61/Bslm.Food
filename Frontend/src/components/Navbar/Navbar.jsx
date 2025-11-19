@@ -7,7 +7,14 @@ import StoreContext from "../../context/StoreContext";
 export const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // for mobile menu toggle
-  const { getTotalCartAmount,token,setToken } = useContext(StoreContext);
+  const [showProfileMenu, setShowProfileMenu] = useState(false); // for profile dropdown
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    setShowProfileMenu(false);
+  };
 
   return (
     <nav className="w-full bg-white shadow-sm lg:shadow-none sticky top-0 z-50">
@@ -79,32 +86,47 @@ export const Navbar = ({ setShowLogin }) => {
               ""
             )}
           </div>
-              {!token?<button
-            onClick={() => setShowLogin(true)}
-            className="text-sm lg:text-[15px] text-[#49557e] border border-gray-500 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full hover:bg-amber-50 transition-all duration-300">
-            Sign In
-          </button>
-          // navbar-profile
-          :<div>
-            <img src={assets.profile_icon} alt="" />
-            {/* nav-profile-dropdown */}
-            <ul> 
-              <li>
-                <img src={assets.bag_icon} alt="" />
-                <p>Orders</p>
-              </li>
-              <hr />
-              <li>
-                <img src={assets.logout_icon} alt="" />
-                <p>Logout</p>
-              </li>
-            </ul>
-            </div>}
-          
+
+          {!token ? (
+            <button
+              onClick={() => setShowLogin(true)}
+              className="text-sm lg:text-[15px] text-[#49557e] border border-gray-500 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full hover:bg-amber-50 transition-all duration-300">
+              Sign In
+            </button>
+          ) : (
+            // navbar-profile (Desktop)
+            <div className="relative">
+              <img
+                onClick={() => setShowProfileMenu(!showProfileMenu)}
+                className="w-8 lg:w-9 cursor-pointer hover:opacity-80 transition-opacity"
+                src={assets.profile_icon}
+                alt="profile"
+              />
+              {/* nav-profile-dropdown (Desktop) */}
+              {showProfileMenu && (
+                <ul className="absolute right-0 mt-3 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-36 lg:w-40 z-50 animate-fade-in">
+                  <li
+                    onClick={() => setShowProfileMenu(false)}
+                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <img className="w-5" src={assets.bag_icon} alt="orders" />
+                    <p className="text-sm text-[#49557e] font-medium">Orders</p>
+                  </li>
+                  <hr className="my-1 border-gray-200" />
+                  <li
+                    onClick={logout}
+                    className="flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <img className="w-5" src={assets.logout_icon} alt="logout" />
+                    <p className="text-sm text-[#49557e] font-medium">Logout</p>
+                  </li>
+                </ul>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* Mobile Right Side (Cart + Hamburger) */}
-        <div className="flex lg:hidden items-center gap-4">
+        {/* Mobile Right Side (Cart + Profile/Hamburger) */}
+        <div className="flex lg:hidden items-center gap-3 sm:gap-4">
+          {/* Cart Icon */}
           <div className="relative cursor-pointer">
             <RouterLink to="/Cart">
               <img 
@@ -119,6 +141,36 @@ export const Navbar = ({ setShowLogin }) => {
               ""
             )}
           </div>
+
+          {/* Profile Icon (Mobile) - Only show when logged in */}
+          {token && (
+            <div className="relative">
+              <img
+                onClick={() => setShowProfileMenu(!showProfileMenu)}
+                className="w-7 sm:w-8 cursor-pointer hover:opacity-80 transition-opacity"
+                src={assets.profile_icon}
+                alt="profile"
+              />
+              {/* Mobile Profile Dropdown */}
+              {showProfileMenu && (
+                <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-32 sm:w-36 z-50 animate-fade-in">
+                  <li
+                    onClick={() => setShowProfileMenu(false)}
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <img className="w-4 sm:w-5" src={assets.bag_icon} alt="orders" />
+                    <p className="text-xs sm:text-sm text-[#49557e] font-medium">Orders</p>
+                  </li>
+                  <hr className="my-1 border-gray-200" />
+                  <li
+                    onClick={logout}
+                    className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <img className="w-4 sm:w-5" src={assets.logout_icon} alt="logout" />
+                    <p className="text-xs sm:text-sm text-[#49557e] font-medium">Logout</p>
+                  </li>
+                </ul>
+              )}
+            </div>
+          )}
             
           {/* Hamburger Icon (Mobile only) */}
           <button
@@ -170,15 +222,17 @@ export const Navbar = ({ setShowLogin }) => {
             </li>
           ))}
 
-          {/* Mobile Sign-In Button */}
-          <button
-            onClick={() => {
-              setShowLogin(true);
-              setIsOpen(false);
-            }}
-            className="text-[15px] sm:text-base text-[#49557e] border border-gray-500 px-6 sm:px-8 py-1.5 sm:py-2 rounded-full hover:bg-amber-50 transition-all duration-300 mt-2">
-            Sign In
-          </button>
+          {/* Mobile Sign-In Button - Only show when NOT logged in */}
+          {!token && (
+            <button
+              onClick={() => {
+                setShowLogin(true);
+                setIsOpen(false);
+              }}
+              className="text-[15px] sm:text-base text-[#49557e] border border-gray-500 px-6 sm:px-8 py-1.5 sm:py-2 rounded-full hover:bg-amber-50 transition-all duration-300 mt-2">
+              Sign In
+            </button>
+          )}
         </ul>
       </div>
     </nav>
