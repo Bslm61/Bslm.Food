@@ -7,7 +7,7 @@ import StoreContext from "../../context/StoreContext";
 export const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const [isOpen, setIsOpen] = useState(false); // for mobile menu toggle
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount,token,setToken } = useContext(StoreContext);
 
   return (
     <nav className="w-full bg-white shadow-sm lg:shadow-none sticky top-0 z-50">
@@ -79,12 +79,28 @@ export const Navbar = ({ setShowLogin }) => {
               ""
             )}
           </div>
-
-          <button
+              {!token?<button
             onClick={() => setShowLogin(true)}
             className="text-sm lg:text-[15px] text-[#49557e] border border-gray-500 px-3 lg:px-4 py-1 lg:py-1.5 rounded-full hover:bg-amber-50 transition-all duration-300">
             Sign In
           </button>
+          // navbar-profile
+          :<div>
+            <img src={assets.profile_icon} alt="" />
+            {/* nav-profile-dropdown */}
+            <ul> 
+              <li>
+                <img src={assets.bag_icon} alt="" />
+                <p>Orders</p>
+              </li>
+              <hr />
+              <li>
+                <img src={assets.logout_icon} alt="" />
+                <p>Logout</p>
+              </li>
+            </ul>
+            </div>}
+          
         </div>
 
         {/* Mobile Right Side (Cart + Hamburger) */}
@@ -103,7 +119,7 @@ export const Navbar = ({ setShowLogin }) => {
               ""
             )}
           </div>
-
+            
           {/* Hamburger Icon (Mobile only) */}
           <button
             onClick={() => setIsOpen(!isOpen)}
