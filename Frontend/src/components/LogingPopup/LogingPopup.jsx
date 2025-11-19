@@ -1,7 +1,13 @@
-import React, {  useState } from "react";
+import React, {  useContext, useState } from "react";
 import assets from "../../assets/assets";
+import StoreContext from "../../context/StoreContext.jsx";
 
 export const LogingPopup = ({ setShowLogin }) => {
+
+
+  const {url} = useContext(StoreContext);
+  
+  
   const [currState, setCurrState] = useState("Login");
   const [data,setData] = useState({name:"",
     email:"",
@@ -14,11 +20,27 @@ export const LogingPopup = ({ setShowLogin }) => {
     setData(data=>({...data,[name]:value}))
   }
 
+  const onLogin = async (event)  => {
+    event.preventDefault();
+
+    let  newUrl = url;
+
+    if (currState==="Login") {
+      newUrl += "/api/user/login"
+    }
+    else{
+      newUrl += "/api/user/register"
+    }
+  }
+  
+  
   return (
     // login-popup
     <div className="absolute z-10 w-full h-full bg-[#00000090] grid p-4">
       {/* login-popup-container */}
-      <form className="place-self-center w-full sm:w-[400px] md:w-[23vw] max-w-[90%] sm:max-w-[400px] md:max-w-[450px] text-[#808080] bg-white flex flex-col gap-5 md:gap-[25px] p-6 sm:p-8 md:p-[25px_30px] rounded-lg text-sm md:text-[14px] animate-fade-in duration-500">
+      <form 
+      onSubmit={onLogin}
+      className="place-self-center w-full sm:w-[400px] md:w-[23vw] max-w-[90%] sm:max-w-[400px] md:max-w-[450px] text-[#808080] bg-white flex flex-col gap-5 md:gap-[25px] p-6 sm:p-8 md:p-[25px_30px] rounded-lg text-sm md:text-[14px] animate-fade-in duration-500">
         {/* login-popup-title */}
         <div className="flex justify-between items-center text-black text-xl sm:text-2xl">
           <h2>{currState}</h2>
@@ -59,7 +81,9 @@ export const LogingPopup = ({ setShowLogin }) => {
             required
           />
         </div>
-        <button className="border-none p-2 sm:p-2.5 bg-[#FF6347] text-sm sm:text-[15px] cursor-pointer text-white rounded-sm hover:bg-[#ff4500] transition-colors">
+        <button 
+        type="submit"
+        className="border-none p-2 sm:p-2.5 bg-[#FF6347] text-sm sm:text-[15px] cursor-pointer text-white rounded-sm hover:bg-[#ff4500] transition-colors">
           {currState === "Sign Up" ? "Create account" : "Login"}
         </button>
         {/* login-popup-condition */}
