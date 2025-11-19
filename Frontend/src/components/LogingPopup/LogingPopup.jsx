@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import assets from "../../assets/assets";
 
 export const LogingPopup = ({ setShowLogin }) => {
   const [currState, setCurrState] = useState("Login");
+  const [data,setData] = useState({name:"",
+    email:"",
+    password:""
+  })
+
+  const onChangeHandler=()=>{
+    const name = event.target.name;
+    const value = event.target.value;
+    setData(data=>({...data,[name]:value}))
+  }
 
   return (
     // login-popup
@@ -28,6 +38,7 @@ export const LogingPopup = ({ setShowLogin }) => {
           ) : (
             <input
               className="border border-gray-300 border-solid p-2 sm:p-2.5 rounded-sm outline-none focus:ring-2 focus:ring-orange-400 text-sm sm:text-base"
+              name="name" onChange={onChangeHandler} value={data.name}
               type="text"
               placeholder="Your name"
               required
@@ -35,12 +46,14 @@ export const LogingPopup = ({ setShowLogin }) => {
           )}
           <input
             className="border border-gray-300 border-solid p-2 sm:p-2.5 rounded-sm outline-none focus:ring-2 focus:ring-orange-400 text-sm sm:text-base"
+            name="email" onChange={onChangeHandler} value={data.email} 
             type="email"
             placeholder="Your email"
             required
           />
           <input
             className="border border-gray-300 border-solid p-2 sm:p-2.5 rounded-sm outline-none focus:ring-2 focus:ring-orange-400 text-sm sm:text-base"
+            name="password" onChange={onChangeHandler} value={data.password}
             type="password"
             placeholder="Password"
             required
