@@ -1,4 +1,3 @@
-import { log } from "console";
 import foodModel from "../models/foodModel.js";
 import fs from "fs";
 
@@ -85,4 +84,47 @@ const removeFood = async (req, res) => {
 };
 
 
-export { addFood, listFood, removeFood };
+// Update foodItem
+const updateFood = async (req, res) => {
+  try {
+    const { id, name, description, price, category } = req.body;
+
+    // Find the existing food item
+    const food = await foodModel.findById(id);
+    
+    if (!food) {
+      return res.json({ success: false, message: "Food item not found" });
+    }
+
+    // Prepare update data
+    const updateData = {
+      name: name,
+      description: description,
+      price: price,
+      category: category,
+    };
+
+    // If new image is uploaded, delete old image and update
+    if (req.file) {
+      // Delete old image if it exists
+      if (food.image) {
+        fs.unlink(`uploads/${food.image}`, (err) => {
+          if (err) console.log("Error deleting old image:", err);
+        });
+      }
+      updateData.image = req.file.filename;
+    }
+
+    // Update the food item
+    await foodModel.findByIdAndUpdate(id, updateData);
+
+    res.json({ success: true, message: "Food updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error updating food" });
+  }
+};
+
+export { addFood, listFood, removeFood, updateFood };
+
+
