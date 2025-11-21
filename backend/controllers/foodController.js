@@ -1,5 +1,6 @@
 import foodModel from "../models/foodModel.js";
 import fs from "fs";
+import { log } from "console";
 
 // Controller to handle adding a new food item
 
@@ -49,15 +50,13 @@ const listFood = async (req, res) => {
 // Controller to remove a food item
 const removeFood = async (req, res) => {
   try {
-
-     console.log("Request body:", req.body); // Add this to debug
+    console.log("Request body:", req.body); // Add this to debug
     console.log("ID received:", req.body.id); // Add this to debug
 
-    
     // 1. Find the food item in the database by ID
     const food = await foodModel.findById(req.body.id);
 
-     // If no food found
+    // If no food found
     if (!food) {
       return res.json({
         success: false,
@@ -80,21 +79,32 @@ const removeFood = async (req, res) => {
     // Return an error response if anything goes wrong
     res.json({ success: false, message: "Error while deleting food list" });
   }
-  
 };
-
 
 // Update foodItem
 const updateFood = async (req, res) => {
   try {
+    console.log("📝 Update request received");
+    console.log("Body:", req.body);
+    console.log("File:", req.file);
+
     const { id, name, description, price, category } = req.body;
+
+    if (!id) {
+      console.log("❌ No ID provided");
+      return res.json({ success: false, message: "Food ID is required" });
+    }
 
     // Find the existing food item
     const food = await foodModel.findById(id);
-    
+
     if (!food) {
+      console.log("❌ Food not found with ID:", id);
+
       return res.json({ success: false, message: "Food item not found" });
     }
+
+    console.log("✅ Found food item:", food.name);
 
     // Prepare update data
     const updateData = {
@@ -126,5 +136,3 @@ const updateFood = async (req, res) => {
 };
 
 export { addFood, listFood, removeFood, updateFood };
-
-
