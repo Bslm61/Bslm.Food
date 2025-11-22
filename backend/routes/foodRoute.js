@@ -3,7 +3,7 @@ import {
   addFood,
   listFood,
   removeFood,
-  updateFood
+  updateFood,
 } from "../controllers/foodController.js";
 import multer from "multer"; //middleware used in Express to handle file uploads (images, PDFs, etc.).
 
