@@ -118,7 +118,7 @@ const updateFood = async (req, res) => {
     if (req.file) {
       // Delete old image if it exists
       if (food.image) {
-              console.log("📸 New image uploaded:", req.file.filename);
+        console.log("📸 New image uploaded:", req.file.filename);
 
         fs.unlink(`uploads/${food.image}`, (err) => {
           if (err) console.log("⚠️ Error deleting old image:", err);
@@ -126,26 +126,25 @@ const updateFood = async (req, res) => {
         });
       }
       updateData.image = req.file.filename;
-    }else {
+    } else {
       console.log("ℹ️ No new image uploaded, keeping existing image");
     }
 
-        console.log("📤 Updating with data:", updateData);
-
+    console.log("📤 Updating with data:", updateData);
 
     // Update the food item
-    await foodModel.findByIdAndUpdate(id, updateData);
-
-        console.log("✅ Food updated successfully:", updatedFood);
-
+    const updatedFood = await foodModel.findByIdAndUpdate(id, updateData, {
+      new: true,
+    });
+    console.log("✅ Food updated successfully:", updatedFood); // ✅ Works!
 
     res.json({ success: true, message: "Food updated successfully" });
   } catch (error) {
-  console.error("❌ Error in updateFood:", error);
+    console.error("❌ Error in updateFood:", error);
     console.error("Error details:", error.message);
     console.error("Stack trace:", error.stack);
-        res.json({ success: false, message: "Error updating food" });
+    res.json({ success: false, message: "Error updating food" });
   }
 };
 
-export { addFood, listFood, removeFood, updateFood};
+export { addFood, listFood, removeFood, updateFood };
