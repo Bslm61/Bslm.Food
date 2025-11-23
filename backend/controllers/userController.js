@@ -7,7 +7,7 @@ import validator from "validator";
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await userModel.findOne({ email });
+    const user = await userModel.findOne({ email: email.toLowerCase().trim() });
     if (!user) {
       return res.json({ success: false, message: "Invalid email or password" });
     }
