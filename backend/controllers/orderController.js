@@ -135,5 +135,22 @@ const updateStatus = async (req, res) => {
   }
 };
 
-
+// const cancelOrder = async (req, res) => {
+//   try {
+//     const order = await orderModel.findById(req.body.orderId);
+    
+//     if (order.status === "Delivered") {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Cannot cancel delivered order"
+//       });
+//     }
+    
+//     await orderModel.findByIdAndDelete(req.body.orderId);
+//     res.json({ success: true, message: "Order cancelled" });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ success: false, message: "Error cancelling order" });
+//   }
+// };
 export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };

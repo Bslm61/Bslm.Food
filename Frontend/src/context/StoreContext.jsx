@@ -16,12 +16,12 @@ export const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
+
+     // Sync with database if user is logged in
     if (token) {
-      await axios.post(
-        url + "/api/cart/add",
-        { itemId },
-        { headers: { token } }
-      );
+      await axios.post(url + "/api/cart/add", { itemId }, { 
+        headers: { token } 
+      });
     }
   };
 

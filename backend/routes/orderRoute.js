@@ -15,6 +15,7 @@ orderRouter.post("/userorders", authMiddleware, userOrders);
 // Admin routes
 orderRouter.get("/list", listOrders);
 orderRouter.post("/status", updateStatus);
+// orderRouter.post("/cancel", authMiddleware, cancelOrder);
 
 
 export default orderRouter;

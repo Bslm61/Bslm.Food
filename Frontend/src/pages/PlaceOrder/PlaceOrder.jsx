@@ -1,9 +1,27 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import StoreContext from "../../context/StoreContext";
 
 export const PlaceOrder = () => {
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount, token, food_list, cartItems, url } =
+    useContext(StoreContext);
 
+  const [data, setData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    street: "",
+    city: "",
+    state: "",
+    zipcode: "",
+    country: "",
+    phone: "",
+  });
+
+  const onChangeHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setData(data=> ({...data,[name]:value}))
+  }
   return (
     <form className="flex flex-col lg:flex-row justify-between gap-10 mt-10 mb-20">
       {/* LEFT SIDE - Delivery Form */}
@@ -15,11 +33,17 @@ export const PlaceOrder = () => {
         {/* Name fields */}
         <div className="flex gap-4 mb-4">
           <input
+            name='firsname' 
+            onChange={onChangeHandler}
+            value={data.firstname}
             type="text"
             placeholder="First Name"
             className="w-full border border-gray-300 p-2.5 rounded-sm outline-none focus:border-[#FF6347] duration-300"
           />
           <input
+          name='lastname' 
+            onChange={onChangeHandler}
+            value={data.lastname}
             type="text"
             placeholder="Last Name"
             className="w-full border border-gray-300 p-2.5 rounded-sm outline-none focus:border-[#FF6347] duration-300"
@@ -27,11 +51,17 @@ export const PlaceOrder = () => {
         </div>
 
         <input
+          name='email' 
+          onChange={onChangeHandler}
+          value={data.email}
           type="email"
           placeholder="Email Address"
           className="w-full border border-gray-300 p-2.5 mb-4 rounded-sm outline-none focus:border-[#FF6347] duration-300"
         />
         <input
+          name='street' 
+          onChange={onChangeHandler}
+          value={data.street}
           type="text"
           placeholder="Street"
           className="w-full border border-gray-300 p-2.5 mb-4 rounded-sm outline-none focus:border-[#FF6347] duration-300"
@@ -40,11 +70,17 @@ export const PlaceOrder = () => {
         {/* City / State */}
         <div className="flex gap-4 mb-4">
           <input
+           name='city' 
+           onChange={onChangeHandler}
+           value={data.city}
             type="text"
             placeholder="City"
             className="w-full border border-gray-300 p-2.5 rounded-sm outline-none focus:border-[#FF6347] duration-300"
           />
           <input
+           name='state' 
+           onChange={onChangeHandler}
+           value={data.state}
             type="text"
             placeholder="State"
             className="w-full border border-gray-300 p-2.5 rounded-sm outline-none focus:border-[#FF6347] duration-300"
@@ -54,11 +90,17 @@ export const PlaceOrder = () => {
         {/* Zip / Country */}
         <div className="flex gap-4 mb-4">
           <input
+           name='zipcode' 
+           onChange={onChangeHandler}
+           value={data.zipcode}
             type="text"
             placeholder="Zip Code"
             className="w-full border border-gray-300 p-2.5 rounded-sm outline-none focus:border-[#FF6347] duration-300"
           />
           <input
+            name='country' 
+            onChange={onChangeHandler}
+            value={data.country}
             type="text"
             placeholder="Country"
             className="w-full border border-gray-300 p-2.5 rounded-sm outline-none focus:border-[#FF6347] duration-300"
@@ -66,6 +108,9 @@ export const PlaceOrder = () => {
         </div>
 
         <input
+          name='phone' 
+          onChange={onChangeHandler}
+          value={data.phone}
           type="text"
           placeholder="Phone"
           className="w-full border border-gray-300 p-2.5 mb-2 rounded-sm outline-none focus:border-[#FF6347] duration-300"
