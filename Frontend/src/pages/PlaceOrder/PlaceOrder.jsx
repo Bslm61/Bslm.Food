@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useNavigate } from "react";
 import StoreContext from "../../context/StoreContext";
 import axios from "axios";
 
@@ -51,7 +51,16 @@ export const PlaceOrder = () => {
       alert("Error");
     }
   };
+    const navigate = useNavigate();
 
+    useEffect(()=>{
+      if (!token) {
+        
+      }
+      else if (getTotalCartAmount()=== 0) {
+        navigate('/cart')
+      }
+    },[token])
   return (
     <form
       onSubmit={placeOrder}
