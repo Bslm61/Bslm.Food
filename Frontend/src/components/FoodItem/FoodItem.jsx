@@ -3,12 +3,17 @@ import assets from "../../assets/assets";
 import StoreContext from "../../context/StoreContext";
 
 export const FoodItem = ({ id, name, price, description, image }) => {
-  const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } =
+    useContext(StoreContext);
 
   return (
     <div className="w-full m-auto rounded-2xl md:rounded-[30px] shadow-[0_0_2px_rgba(0,0,0,0.1)] duration-300 animate-fade-in-scale">
       <div className="relative">
-        <img src={url+"/images/"+image} alt="" className="w-full rounded-2xl" />
+        <img
+          src={url + "/images/" + image}
+          alt=""
+          className="w-full rounded-2xl"
+        />
         {!cartItems[id] ? (
           <img
             onClick={() => addToCart(id)}
@@ -36,11 +41,21 @@ export const FoodItem = ({ id, name, price, description, image }) => {
       </div>
       <div className="p-3 sm:p-4 md:p-5">
         <div className="flex items-center justify-between mb-2 sm:mb-2.5">
-          <p className="text-base sm:text-lg md:text-[20px] font-medium truncate pr-2">{name}</p>
-          <img src={assets.rating_starts} alt="" className="w-16 sm:w-18 md:w-20 shrink-0" />
+          <p className="text-base sm:text-lg md:text-[20px] font-medium truncate pr-2">
+            {name}
+          </p>
+          <img
+            src={assets.rating_starts}
+            alt=""
+            className="w-16 sm:w-18 md:w-20 shrink-0"
+          />
         </div>
-        <p className="text-[#676767] text-xs sm:text-sm md:text-[12px] line-clamp-2">{description}</p>
-        <p className="text-red-400 text-lg sm:text-xl md:text-[22px] font-semibold mt-2 sm:mt-2.5">${price}</p>
+        <p className="text-[#676767] text-xs sm:text-sm md:text-[12px] line-clamp-2">
+          {description}
+        </p>
+        <p className="text-red-400 text-lg sm:text-xl md:text-[22px] font-semibold mt-2 sm:mt-2.5">
+          ${price}
+        </p>
       </div>
     </div>
   );

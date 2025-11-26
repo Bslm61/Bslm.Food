@@ -7,7 +7,7 @@ export const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
   const navigate = useNavigate();
-  
+
   return (
     <div className="mt-16 md:mt-20 lg:mt-[100px] px-4 sm:px-6 md:px-8 lg:px-0 max-w-6xl mx-auto">
       {/* cart-items-title */}
@@ -27,11 +27,17 @@ export const Cart = () => {
             <div key={item._id}>
               {/* Desktop View */}
               <div className="hidden md:grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center gap-2 my-2 text-black text-sm lg:text-base">
-                <img className="w-12 lg:w-[50px] rounded" src={url+"/images/"+item.image} alt={item.name} />
+                <img
+                  className="w-12 lg:w-[50px] rounded"
+                  src={url + "/images/" + item.image}
+                  alt={item.name}
+                />
                 <p className="font-medium">{item.name}</p>
                 <p>${item.price}</p>
                 <p>{cartItems[item._id]}</p>
-                <p className="font-semibold">${item.price * cartItems[item._id]}</p>
+                <p className="font-semibold">
+                  ${item.price * cartItems[item._id]}
+                </p>
                 <p
                   onClick={() => removeFromCart(item._id)}
                   className="cursor-pointer text-red-500 hover:text-red-700 font-bold text-lg">
@@ -41,7 +47,11 @@ export const Cart = () => {
 
               {/* Mobile View */}
               <div className="md:hidden flex gap-3 p-4 bg-white border border-gray-200 rounded-lg my-3 shadow-sm">
-                <img className="w-20 h-20 object-cover rounded" src={url+"/images/"+item.image} alt={item.name} />
+                <img
+                  className="w-20 h-20 object-cover rounded"
+                  src={url + "/images/" + item.image}
+                  alt={item.name}
+                />
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
                     <p className="font-semibold text-base">{item.name}</p>
@@ -51,8 +61,12 @@ export const Cart = () => {
                       ✕
                     </button>
                   </div>
-                  <p className="text-gray-600 text-sm mb-1">${item.price} × {cartItems[item._id]}</p>
-                  <p className="text-[#FF6347] font-bold text-lg">${item.price * cartItems[item._id]}</p>
+                  <p className="text-gray-600 text-sm mb-1">
+                    ${item.price} × {cartItems[item._id]}
+                  </p>
+                  <p className="text-[#FF6347] font-bold text-lg">
+                    ${item.price * cartItems[item._id]}
+                  </p>
                 </div>
               </div>
 
@@ -61,7 +75,7 @@ export const Cart = () => {
           );
         }
       })}
-      
+
       {/* carte-bottom */}
       <div className="mt-8 md:mt-12 lg:mt-20 flex flex-col lg:flex-row gap-8 lg:gap-[max(12vw,20px)]">
         {/* carte-total */}
@@ -94,7 +108,7 @@ export const Cart = () => {
             PROCEED TO CHECKOUT
           </button>
         </div>
-        
+
         {/* cart-promocode */}
         <div className="flex-1">
           <div>

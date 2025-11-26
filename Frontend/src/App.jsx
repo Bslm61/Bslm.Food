@@ -6,16 +6,15 @@ import { Cart } from "./pages/Cart/Cart";
 import { PlaceOrder } from "./pages/PlaceOrder/PlaceOrder";
 import { Footer } from "./components/Footer/Footer";
 import { LogingPopup } from "./components/LogingPopup/LogingPopup";
-import {Verify} from "./pages/Verify/Verify";
+import { Verify } from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrdes/MyOrders";
-
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
       {showLogin ? <LogingPopup setShowLogin={setShowLogin} /> : <></>}
-     <div className="overflow-hidden p-0 box-border min-h-screen w-full lg:w-[80%] m-auto">
+      <div className="overflow-hidden p-0 box-border min-h-screen w-full lg:w-[80%] m-auto">
         <Navbar setShowLogin={setShowLogin} />
         <Routes>
           <Route path="/" element={<Home />} />

@@ -74,10 +74,10 @@ export const Navbar = ({ setShowLogin }) => {
 
           <div className="relative cursor-pointer">
             <RouterLink to="/Cart">
-              <img 
-                className="w-5 lg:w-6 hover:opacity-70 transition-opacity cursor-pointer" 
-                src={assets.basket_icon} 
-                alt="basket" 
+              <img
+                className="w-5 lg:w-6 hover:opacity-70 transition-opacity cursor-pointer"
+                src={assets.basket_icon}
+                alt="basket"
               />
             </RouterLink>
             {getTotalCartAmount() > 0 ? (
@@ -104,11 +104,10 @@ export const Navbar = ({ setShowLogin }) => {
               />
               {/* nav-profile-dropdown (Desktop) */}
               {showProfileMenu && (
-                <ul 
-                  className="absolute right-0 mt-3 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-36 lg:w-40 z-50 animate-fade-in">
+                <ul className="absolute right-0 mt-3 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-36 lg:w-40 z-50 animate-fade-in">
                   <li
                     onClick={() => {
-                      navigate('/myorders');
+                      navigate("/myorders");
                       setShowProfileMenu(false);
                     }}
                     className="flex items-center gap-3 px-4 py-2.5 hover:bg-amber-50 cursor-pointer transition-colors">
@@ -119,7 +118,11 @@ export const Navbar = ({ setShowLogin }) => {
                   <li
                     onClick={logout}
                     className="flex items-center gap-3 px-4 py-2.5 hover:bg-amber-50 cursor-pointer transition-colors">
-                    <img className="w-5" src={assets.logout_icon} alt="logout" />
+                    <img
+                      className="w-5"
+                      src={assets.logout_icon}
+                      alt="logout"
+                    />
                     <p className="text-sm text-[#49557e] font-medium">Logout</p>
                   </li>
                 </ul>
@@ -133,10 +136,10 @@ export const Navbar = ({ setShowLogin }) => {
           {/* Cart Icon */}
           <div className="relative cursor-pointer">
             <RouterLink to="/Cart">
-              <img 
-                className="w-5 sm:w-6 cursor-pointer hover:opacity-70 transition-opacity" 
-                src={assets.basket_icon} 
-                alt="basket" 
+              <img
+                className="w-5 sm:w-6 cursor-pointer hover:opacity-70 transition-opacity"
+                src={assets.basket_icon}
+                alt="basket"
               />
             </RouterLink>
             {getTotalCartAmount() > 0 ? (
@@ -160,32 +163,53 @@ export const Navbar = ({ setShowLogin }) => {
                 <ul className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 w-32 sm:w-36 z-50 animate-fade-in">
                   <li
                     onClick={() => {
-                      navigate('/myorders');
+                      navigate("/myorders");
                       setShowProfileMenu(false);
                     }}
                     className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors">
-                    <img className="w-4 sm:w-5" src={assets.bag_icon} alt="orders" />
-                    <p className="text-xs sm:text-sm text-[#49557e] font-medium">Orders</p>
+                    <img
+                      className="w-4 sm:w-5"
+                      src={assets.bag_icon}
+                      alt="orders"
+                    />
+                    <p className="text-xs sm:text-sm text-[#49557e] font-medium">
+                      Orders
+                    </p>
                   </li>
                   <hr className="my-1 border-gray-200" />
                   <li
                     onClick={logout}
                     className="flex items-center gap-2 px-3 sm:px-4 py-2 hover:bg-amber-50 cursor-pointer transition-colors">
-                    <img className="w-4 sm:w-5" src={assets.logout_icon} alt="logout" />
-                    <p className="text-xs sm:text-sm text-[#49557e] font-medium">Logout</p>
+                    <img
+                      className="w-4 sm:w-5"
+                      src={assets.logout_icon}
+                      alt="logout"
+                    />
+                    <p className="text-xs sm:text-sm text-[#49557e] font-medium">
+                      Logout
+                    </p>
                   </li>
                 </ul>
               )}
             </div>
           )}
-            
+
           {/* Hamburger Icon (Mobile only) */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="flex flex-col gap-1 cursor-pointer">
-            <span className={`w-6 h-0.5 bg-[#49557e] transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-[#49557e] transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`w-6 h-0.5 bg-[#49557e] transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+            <span
+              className={`w-6 h-0.5 bg-[#49557e] transition-transform duration-300 ${
+                isOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}></span>
+            <span
+              className={`w-6 h-0.5 bg-[#49557e] transition-opacity duration-300 ${
+                isOpen ? "opacity-0" : ""
+              }`}></span>
+            <span
+              className={`w-6 h-0.5 bg-[#49557e] transition-transform duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}></span>
           </button>
         </div>
       </div>
@@ -246,11 +270,15 @@ export const Navbar = ({ setShowLogin }) => {
             <>
               <button
                 onClick={() => {
-                  navigate('/myorders');
+                  navigate("/myorders");
                   setIsOpen(false);
                 }}
                 className="text-[15px] sm:text-base text-[#49557e] border border-gray-500 px-6 sm:px-8 py-1.5 sm:py-2 rounded-full hover:bg-amber-50 transition-all duration-300 cursor-pointer flex items-center gap-2">
-                <img className="w-4 sm:w-5" src={assets.bag_icon} alt="orders" />
+                <img
+                  className="w-4 sm:w-5"
+                  src={assets.bag_icon}
+                  alt="orders"
+                />
                 Orders
               </button>
               <button
@@ -259,7 +287,11 @@ export const Navbar = ({ setShowLogin }) => {
                   setIsOpen(false);
                 }}
                 className="text-[15px] sm:text-base text-[#49557e] border border-gray-500 px-6 sm:px-8 py-1.5 sm:py-2 rounded-full hover:bg-amber-50 transition-all duration-300 cursor-pointer flex items-center gap-2">
-                <img className="w-4 sm:w-5" src={assets.logout_icon} alt="logout" />
+                <img
+                  className="w-4 sm:w-5"
+                  src={assets.logout_icon}
+                  alt="logout"
+                />
                 Logout
               </button>
             </>
