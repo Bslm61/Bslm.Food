@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // placing user order for frontend
 const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:5173";
+  const frontend_url = "http://localhost:5174";
 
   try {
     // Validate input
@@ -139,7 +139,7 @@ const cancelOrder = async (req, res) => {
     if (order.status === "Delivered") {
       return res.status(400).json({
         success: false,
-        message: "Cannot cancel delivered order"
+        message: "Cannot cancel delivered order",
       });
     }
 
@@ -151,7 +151,11 @@ const cancelOrder = async (req, res) => {
   }
 };
 
-
-
-
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, cancelOrder };
+export {
+  placeOrder,
+  verifyOrder,
+  userOrders,
+  listOrders,
+  updateStatus,
+  cancelOrder,
+};

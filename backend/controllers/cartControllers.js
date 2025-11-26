@@ -5,19 +5,21 @@ const addToCart = async (req, res) => {
   try {
     const { itemId } = req.body;
     const userId = req.body.userId;
-    
+
     if (!userId) {
       return res.json({ success: false, message: "User not authenticated" });
     }
 
     let userData = await userModel.findById(userId);
-    
+
     if (!userData) {
       return res.json({ success: false, message: "User not found" });
     }
 
-    let cartData = userData.cartData.toObject ? userData.cartData.toObject() : userData.cartData || {};
-    
+    let cartData = userData.cartData.toObject
+      ? userData.cartData.toObject()
+      : userData.cartData || {};
+
     if (!cartData[itemId]) {
       cartData[itemId] = 1;
     } else {
@@ -37,19 +39,21 @@ const removeFromCart = async (req, res) => {
   try {
     const { itemId } = req.body;
     const userId = req.body.userId;
-    
+
     if (!userId) {
       return res.json({ success: false, message: "User not authenticated" });
     }
 
     let userData = await userModel.findById(userId);
-    
+
     if (!userData) {
       return res.json({ success: false, message: "User not found" });
     }
 
-    let cartData = userData.cartData.toObject ? userData.cartData.toObject() : userData.cartData || {};
-    
+    let cartData = userData.cartData.toObject
+      ? userData.cartData.toObject()
+      : userData.cartData || {};
+
     // If item exists and quantity is more than 1, decrease it
     if (cartData[itemId] > 1) {
       cartData[itemId] -= 1;
@@ -71,19 +75,21 @@ const removeFromCart = async (req, res) => {
 const getCart = async (req, res) => {
   try {
     const userId = req.body.userId;
-    
+
     if (!userId) {
       return res.json({ success: false, message: "User not authenticated" });
     }
 
     let userData = await userModel.findById(userId);
-    
+
     if (!userData) {
       return res.json({ success: false, message: "User not found" });
     }
 
-    let cartData = userData.cartData.toObject ? userData.cartData.toObject() : userData.cartData || {};
-    
+    let cartData = userData.cartData.toObject
+      ? userData.cartData.toObject()
+      : userData.cartData || {};
+
     res.json({ success: true, cartData });
   } catch (error) {
     console.log(error);
