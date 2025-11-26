@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import { toast } from "react-toastify";
 
-export const Add = ({url}) => {
-  
+export const Add = ({ url }) => {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -39,11 +38,7 @@ export const Add = ({url}) => {
 
       setImage(false);
       toast.success(response.data.message);
-    
-    
-    }
-  
-  else {
+    } else {
       toast.error(response.data.message);
     }
   };
@@ -56,7 +51,9 @@ export const Add = ({url}) => {
           <p className="text-gray-700 font-semibold text-base md:text-lg">
             Upload Image
           </p>
-          <label htmlFor="image" className="cursor-pointer w-32 h-32 md:w-40 md:h-40 block ">
+          <label
+            htmlFor="image"
+            className="cursor-pointer w-32 h-32 md:w-40 md:h-40 block ">
             <img
               src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt="Upload area"

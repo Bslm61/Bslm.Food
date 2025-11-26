@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+import React, { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
   const [image, setImage] = useState(null);
@@ -8,25 +8,25 @@ const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
     name: foodItem.name,
     description: foodItem.description,
     price: foodItem.price,
-    category: foodItem.category
+    category: foodItem.category,
   });
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setData(data => ({ ...data, [name]: value }));
+    setData((data) => ({ ...data, [name]: value }));
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("id", foodItem._id);
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", Number(data.price));
     formData.append("category", data.category);
-    
+
     if (image) {
       formData.append("image", image);
     }
@@ -47,36 +47,37 @@ const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
       onClick={onClose} // ✅ Click outside to close
     >
-      <div 
+      <div
         className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()} // ✅ Prevent close when clicking inside
       >
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Edit Food Item</h2>
-          <button 
+          <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 text-3xl leading-none"
-          >
+            className="text-gray-500 hover:text-gray-700 text-3xl leading-none">
             ×
           </button>
         </div>
 
         <form onSubmit={onSubmitHandler} className="space-y-4">
-          
           {/* Current Image Preview */}
           <div>
-            <label className="block mb-2 font-medium text-gray-700">Current Image</label>
+            <label className="block mb-2 font-medium text-gray-700">
+              Current Image
+            </label>
             {foodItem.image ? (
-              <img 
+              <img
                 src={`${url}/images/${foodItem.image}`}
                 alt={foodItem.name}
                 className="w-32 h-32 object-cover rounded-lg border-2 border-gray-200"
                 onError={(e) => {
-                  e.target.src = "https://via.placeholder.com/128?text=No+Image";
+                  e.target.src =
+                    "https://via.placeholder.com/128?text=No+Image";
                 }}
               />
             ) : (
@@ -89,7 +90,8 @@ const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
           {/* Upload New Image */}
           <div>
             <label className="block mb-2 font-medium text-gray-700">
-              Upload New Image {!foodItem.image && <span className="text-red-500">*</span>}
+              Upload New Image{" "}
+              {!foodItem.image && <span className="text-red-500">*</span>}
             </label>
             <input
               type="file"
@@ -99,9 +101,9 @@ const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
               className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             {image && (
-              <img 
-                src={URL.createObjectURL(image)} 
-                alt="Preview" 
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Preview"
                 className="mt-3 w-32 h-32 object-cover rounded-lg border-2 border-blue-500"
               />
             )}
@@ -150,8 +152,7 @@ const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
                 name="category"
                 value={data.category}
                 onChange={onChangeHandler}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="Salad">Salad</option>
                 <option value="Rolls">Rolls</option>
                 <option value="Deserts">Deserts</option>
@@ -186,15 +187,13 @@ const EditFood = ({ foodItem, url, onClose, onUpdate }) => {
           <div className="flex flex-col sm:flex-row gap-3 pt-4">
             <button
               type="submit"
-              className="flex-1 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition"
-            >
+              className="flex-1 bg-green-600 text-white py-3 rounded-lg font-medium hover:bg-green-700 transition">
               UPDATE FOOD ITEM
             </button>
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-400 transition"
-            >
+              className="flex-1 bg-gray-300 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-400 transition">
               CANCEL
             </button>
           </div>
