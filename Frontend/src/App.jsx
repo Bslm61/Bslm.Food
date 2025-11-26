@@ -15,7 +15,7 @@ const App = () => {
   return (
     <>
       {showLogin ? <LogingPopup setShowLogin={setShowLogin} /> : <></>}
-      <div className="overflow-   sm:overflow-hidden p-0  box-border min-h-screen w-[80%] m-auto ">
+     <div className="overflow-hidden p-0 box-border min-h-screen w-full lg:w-[80%] m-auto">
         <Navbar setShowLogin={setShowLogin} />
         <Routes>
           <Route path="/" element={<Home />} />

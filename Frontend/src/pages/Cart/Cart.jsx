@@ -1,14 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import StoreContext from "../../context/StoreContext";
 
 export const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
   const navigate = useNavigate();
+  
   return (
-    //cart
     <div className="mt-16 md:mt-20 lg:mt-[100px] px-4 sm:px-6 md:px-8 lg:px-0 max-w-6xl mx-auto">
       {/* cart-items-title */}
       <div className="hidden md:grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center text-gray-500 text-sm lg:text-base">
@@ -27,7 +27,7 @@ export const Cart = () => {
             <div key={item._id}>
               {/* Desktop View */}
               <div className="hidden md:grid grid-cols-[1fr_1.5fr_1fr_1fr_1fr_0.5fr] items-center gap-2 my-2 text-black text-sm lg:text-base">
-                <img className="w-12 lg:w-[50px] rounded" src={item.image} alt="" />
+                <img className="w-12 lg:w-[50px] rounded" src={url+"/images/"+item.image} alt={item.name} />
                 <p className="font-medium">{item.name}</p>
                 <p>${item.price}</p>
                 <p>{cartItems[item._id]}</p>
@@ -41,7 +41,7 @@ export const Cart = () => {
 
               {/* Mobile View */}
               <div className="md:hidden flex gap-3 p-4 bg-white border border-gray-200 rounded-lg my-3 shadow-sm">
-                <img className="w-20 h-20 object-cover rounded" src={item.image} alt="" />
+                <img className="w-20 h-20 object-cover rounded" src={url+"/images/"+item.image} alt={item.name} />
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
                     <p className="font-semibold text-base">{item.name}</p>
@@ -61,6 +61,7 @@ export const Cart = () => {
           );
         }
       })}
+      
       {/* carte-bottom */}
       <div className="mt-8 md:mt-12 lg:mt-20 flex flex-col lg:flex-row gap-8 lg:gap-[max(12vw,20px)]">
         {/* carte-total */}
@@ -93,6 +94,7 @@ export const Cart = () => {
             PROCEED TO CHECKOUT
           </button>
         </div>
+        
         {/* cart-promocode */}
         <div className="flex-1">
           <div>
@@ -106,7 +108,7 @@ export const Cart = () => {
                 type="text"
                 placeholder="promo code"
               />
-              <button className="px-4 md:px-6 py-2 md:py-2.5 bg-black hover:bg-gray-800 text-white rounded-lg transition-all duration-200 text-sm md:text-base font-medium whitespace-nowrap">
+              <button className="px-4 md:px-6 py-2 md:py-2.5 bg-black hover:bg-gray-800 text-white rounded-lg transition-all duration-200 text-sm md:text-base font-medium whitespace-nowrap cursor-pointer">
                 Submit
               </button>
             </div>
@@ -116,3 +118,5 @@ export const Cart = () => {
     </div>
   );
 };
+
+export default Cart;
