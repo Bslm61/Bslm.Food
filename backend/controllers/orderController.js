@@ -15,14 +15,14 @@ const placeOrder = async (req, res) => {
     if (!req.body.items || req.body.items.length === 0) {
       return res.status(400).json({
         success: false,
-        message: "Cart is empty"
+        message: "Cart is empty",
       });
     }
 
     if (!req.body.address || !req.body.amount) {
       return res.status(400).json({
         success: false,
-        message: "Address and amount are required"
+        message: "Address and amount are required",
       });
     }
 
@@ -38,7 +38,6 @@ const placeOrder = async (req, res) => {
     // Clear user cart
     await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
-
     // Create Stripe line items
     const line_items = req.body.items.map((item) => ({
       price_data: {
@@ -50,7 +49,6 @@ const placeOrder = async (req, res) => {
       },
       quantity: item.quantity,
     }));
-
 
     // Add delivery charges
     line_items.push({
@@ -82,7 +80,7 @@ const placeOrder = async (req, res) => {
 //Verify Order Endpoint
 const verifyOrder = async (req, res) => {
   const { orderId, success } = req.body;
-  
+
   try {
     if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
@@ -96,7 +94,6 @@ const verifyOrder = async (req, res) => {
     res.status(500).json({ success: false, message: "Error verifying order" });
   }
 };
-
 
 //Get User Orders Endpoint
 const userOrders = async (req, res) => {
@@ -125,8 +122,8 @@ const listOrders = async (req, res) => {
 
 const updateStatus = async (req, res) => {
   try {
-    await orderModel.findByIdAndUpdate(req.body.orderId, { 
-      status: req.body.status 
+    await orderModel.findByIdAndUpdate(req.body.orderId, {
+      status: req.body.status,
     });
     res.json({ success: true, message: "Status updated" });
   } catch (error) {
@@ -135,20 +132,17 @@ const updateStatus = async (req, res) => {
   }
 };
 
-
-
-
 // const cancelOrder = async (req, res) => {
 //   try {
 //     const order = await orderModel.findById(req.body.orderId);
-    
+
 //     if (order.status === "Delivered") {
 //       return res.status(400).json({
 //         success: false,
 //         message: "Cannot cancel delivered order"
 //       });
 //     }
-    
+
 //     await orderModel.findByIdAndDelete(req.body.orderId);
 //     res.json({ success: true, message: "Order cancelled" });
 //   } catch (error) {
@@ -156,4 +150,9 @@ const updateStatus = async (req, res) => {
 //     res.status(500).json({ success: false, message: "Error cancelling order" });
 //   }
 // };
+
+
+// Listing orders for admin panel
+
+
 export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
