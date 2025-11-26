@@ -78,7 +78,9 @@ export const MyOrders = () => {
 
                 {/* Track Order Button */}
                 <div className="flex justify-end">
-                  <button className="cursor-pointer px-4 py-2 border-2 border-[#FF6347] text-[#FF6347] font-semibold rounded text-sm hover:bg-red-50 transition-colors">
+                  <button 
+                  onClick={fetchOrders}
+                  className="cursor-pointer px-4 py-2 border-2 border-[#FF6347] text-[#FF6347] font-semibold rounded text-sm hover:bg-red-50 transition-colors">
                     Track Order
                   </button>
                 </div>
