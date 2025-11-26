@@ -1,6 +1,6 @@
 import express from "express";
 import authMiddleware from "../middleware/auth.js";
-import { placeOrder, verifyOrder, userOrders, listOrders, updateStatus  } from "../controllers/orderController.js";
+import { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, cancelOrder  } from "../controllers/orderController.js";
 
 
 
@@ -15,7 +15,7 @@ orderRouter.post("/userorders", authMiddleware, userOrders);
 // Admin routes
 orderRouter.get("/list", listOrders);
 orderRouter.post("/status", updateStatus);
-// orderRouter.post("/cancel", authMiddleware, cancelOrder);
+orderRouter.post("/cancel", authMiddleware, cancelOrder);
 
 
 export default orderRouter;
